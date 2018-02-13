@@ -29,7 +29,7 @@ if 'darwin' in sys.platform.lower():
 elif 'linux' in sys.platform.lower():
     libraries_mumps = ['coinmumps']
     libraries_ipopt = ['ipopt']
-    extra_link_args = ['-Wl,-rpath=$ORIGIN']
+    extra_link_args = ['-Wl,-rpath=$ORIGIN', '-Wl,-rpath=$ORIGIN/../../lin_solver/_mumps']
 else:
     libraries_mumps = ['IpOptFSS']
     libraries_ipopt = ['IpOpt-vc10']
@@ -95,7 +95,7 @@ setup(name='OPTALG',
                         'scipy>=0.18.1',
                         'nose'],
       package_data={'optalg.lin_solver._mumps' : ['libcoinmumps*', 'IpOptFSS*'],
-                    'optalg.opt_solver._ipopt' : ['libipopt*', 'IpOpt-vc10*'],
+                    'optalg.opt_solver._ipopt' : ['libipopt*', 'IpOpt-vc10*', 'IpOptFSS*'],
                     'optalg.opt_solver._clp' : ['libClp*']},
       classifiers=['Development Status :: 5 - Production/Stable',
                    'License :: OSI Approved :: BSD License',
